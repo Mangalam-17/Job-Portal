@@ -1,0 +1,43 @@
+# Node modules
+node_modules/
+.DS_Store  
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Directory for uploaded files (if you don't want to commit uploads)
+uploads/
+
+# Optional npm cache
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional next.js build output (if used in future)
+.next/
+out/
+
+# Optional VSCode settings
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
