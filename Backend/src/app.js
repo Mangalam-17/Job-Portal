@@ -6,7 +6,9 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const authRoutes = require("./routes/authRoutes"); // ✅ added
+const authRoutes = require("./routes/authRoutes");
+
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
@@ -36,8 +38,8 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/uploads", express.static("uploads"));
 
-
-app.use("/api/auth", authRoutes); 
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({
