@@ -5,6 +5,9 @@ const rateLimit = require("express-rate-limit");
 const morgan = require("morgan");
 require("dotenv").config();
 
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+
 const app = express();
 
 app.use(helmet());
@@ -32,6 +35,9 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use("/uploads", express.static("uploads"));
+
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({
