@@ -3,12 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const morgan = require("morgan");
-const mongoose = require("mongoose");
 require("dotenv").config();
-
-const authRoutes = require("./routes/authRoutes");
-
-const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
@@ -38,9 +33,6 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/uploads", express.static("uploads"));
 
-app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
-
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
@@ -69,14 +61,5 @@ app.use((err, req, res, next) => {
     error: process.env.NODE_ENV === "development" ? err.message : {},
   });
 });
-
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log("✅ MongoDB connected");
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-  })
-  .catch((err) => console.error("❌ DB connection error:", err));
 
 module.exports = app;
